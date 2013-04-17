@@ -6,4 +6,3 @@ Linear algebra project for studying noise propagation on the Golub-Kahan bidiago
 IMPORTANT: Do not upload the papers folder to Github, the account is public.
 
 
-FOO2
