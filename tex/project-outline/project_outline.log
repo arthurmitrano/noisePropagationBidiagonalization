@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.5.18)  15 APR 2013 22:54
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2007.5.18)  16 APR 2013 20:14
 entering extended mode
 \write18 enabled.
  %&-line parsing enabled.
@@ -232,7 +232,7 @@ driver: pdftex
 \MPnumerator=\count107
 \everyMPtoPDFconversion=\toks27
 )
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
 
  []
 
@@ -241,24 +241,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 Here is how much of TeX's memory you used:
  2556 strings out of 94073
  31087 string characters out of 1162984
- 84261 words of memory out of 1500000
+ 83261 words of memory out of 1500000
  5679 multiletter control sequences out of 10000+50000
  11105 words of font info for 43 fonts, out of 1200000 for 2000
  806 hyphenation exceptions out of 8191
- 34i,5n,31p,872b,216s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 34i,5n,31p,1000b,220s stack positions out of 5000i,500n,6000p,200000b,5000s
 </usr/local/texlive/2007/texmf-dist/fonts/type1/bl
 uesky/cm/cmbx10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/
 cmcsc10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi10.p
-fb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi6.pfb></usr/l
-ocal/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi8.pfb></usr/local/texli
-ve/2007/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></usr/local/texlive/2007/te
-xmf-dist/fonts/type1/bluesky/cm/cmr8.pfb></usr/local/texlive/2007/texmf-dist/fo
-nts/type1/bluesky/cm/cmr9.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/b
-luesky/cm/cmsy10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/am
-s/msbm10.pfb>
-Output written on project_outline.pdf (2 pages, 57447 bytes).
+fb></usr/local/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmmi8.pfb></usr/l
+ocal/texlive/2007/texmf-dist/fonts/type1/bluesky/cm/cmr10.pfb></usr/local/texli
+ve/2007/texmf-dist/fonts/type1/bluesky/cm/cmr8.pfb></usr/local/texlive/2007/tex
+mf-dist/fonts/type1/bluesky/cm/cmr9.pfb></usr/local/texlive/2007/texmf-dist/fon
+ts/type1/bluesky/cm/cmsy10.pfb></usr/local/texlive/2007/texmf-dist/fonts/type1/
+bluesky/ams/msbm10.pfb>
+Output written on project_outline.pdf (2 pages, 52609 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 45 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
