@@ -1,0 +1,44 @@
+\documentclass[11pt]{amsart}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\title{Project Outline}
+\author{Juan Durazo, Brendan Horan, Arthur Mitrano}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\section{Introduction}
+We study how noise propagates in the Golub-Kahan iterative bidiagonalization in the problem 
+\begin{equation}
+Ax\approx b, \indent  b=b^{exact} + b^{noise} \in \mathbb{R}^n
+\end{equation}
+
+In the above equation we do not the level of noise $b^{noise}$ in the problem, but through this diagonalization process, it is possible to determine it.  The first part of this study will be to replicate results from the numerical experiments done in [1]. More specifically we will find at what iteration step the noise is revealed and how we can find the noise level from this as done in the paper.
+\\
+
+The test problem that will be used will be {\bf shaw}, so in equation (1) above, A is the blurring matrix and $b^{exact}$ is the blurred image that is returned from the {\bf shaw} function. We will then generate $b^{noise}$ and add it to $b^{exact}$ to create $b$. Using this information, we apply the Golub-Kahan iterative bidiagonalization(GKIB) using MATLAB code that we found online to perform our numerical experiments. From this code we will obtain a sequence of real numbers $\alpha_j,\beta_j$ and vectors $s_j,w_j$ for $k=1,2,...k$ that we will use to determine when the noise is revealed and how to get the noise level.
+
+
+\section{Replicate results from main paper}
+\begin{itemize}
+\item Brendan's part goes here
+\end{itemize}
+
+\section{Use NCP approach to obtain results}
+\begin{itemize}
+\item We will attempt to find $k_{noise}$ from an NCP approach. This involves computing the cumulative periodogram of the basis vectors $s_k$ and seeing if as k increases and noise becomes more visible in basis vector $s_k$, the periodogram of the basis vectors $s_k$ will begin to form a straight diagonal line with slope 1. In order to do this, we will need to a way to measure how noise-like the periodogram is and at what point we consider it to be noise. Two methods that we will consider for this measurement are the deviations of the basis vectors from a straight diagonal "white noise" line and the other measurement will be to asses the portion of the basis vectors that lies outside the Kolmogorov-Smirnov test. The latter approach requires us to provide a confidence level for white noise lines and that is something that we will experiment with. From this approach we will see if we can find the bidiagonalization iteration that is noise revealing.
+\end{itemize}
+
+\section{Compare the two methods}
+\begin{itemize}
+\item Arthur's part goes here
+\end{itemize}
+
+\end{document}  
