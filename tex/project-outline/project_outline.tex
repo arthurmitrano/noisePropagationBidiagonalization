@@ -42,9 +42,7 @@ when the noise is revealed and how to get the noise level.
 
 
 \section{Replicate results from main paper}
-\begin{itemize}
-\item Brendan's part goes here
-\end{itemize}
+The first order of business will be to replicate the results from section 3 of our primary article. Here we will plot the left bidiagonalization vectors given by the Golub-Kahan iterative algorithm for the purpose of determining an appropriate number of basis vectors to retain in the solution. The smoothing and orthogonalization in the algorithm can also be interpreted as a step-by-step elimination of the dominant low frequency components, revealing the high frequency noise. We hope to explore the method presented in section 4 for approximating this noise level given the particular iteration, k_noise, and compare to the authors' results.
 
 \section{Use NCP approach to obtain results}
 We will attempt to find $k_{noise}$ using the \emph{Normalized Cumulative Periodogram (NCP)} approach.
