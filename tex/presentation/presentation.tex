@@ -277,7 +277,7 @@ process}
 
 \begin{frame}{Picard plot}
   \begin{center}
-    %\includegraphics[width=0.35\linewidth]{img/picardPlot}
+    \includegraphics[width=.55\linewidth]{figures/picard}
   \end{center}
   \begin{itemize}
     \item $u_{j}$ are the left singular vectors of $A$.
@@ -290,7 +290,7 @@ process}
 \subsection{Finding $k_{noise}$}
 \begin{frame}{Spectral coefficients}
   \begin{center}
-    %\includegraphics[width=0.35\linewidth]{img/spec_sk}
+    \includegraphics[width=0.55\linewidth]{figures/run1/spec_sk}
   \end{center}
 \end{frame}
 % Here we want to show that as the we increase $k$ the spectral coefficients
@@ -300,7 +300,7 @@ process}
 
 \begin{frame}{Left singular vectors}
   \begin{center}
-    %\includegraphics[width=0.35\linewidth]{img/sing_vecs}
+    \includegraphics[width=0.55\linewidth]{figures/run1/sing_vecs}
   \end{center}
 \end{frame}
 % We include the plot of the singular vectors to show that their frequency get
@@ -367,14 +367,14 @@ process}
 
 \begin{frame}{NCP plot}
   \begin{center}
-    %\includegraphics[width=0.35\linewidth]{img/cum_per}
+    \includegraphics[width=0.55\linewidth]{figures/run1/cum_per}
   \end{center}
 \end{frame}
 % Remember to explain the frequency idea, i.e., why the graphs have a S-shape.
 
 \begin{frame}{White-noise measures}
   \begin{center}
-    %\includegraphics[width=0.35\linewidth]{img/total_deviation}
+    \includegraphics[width=0.55\linewidth]{figures/run1/total_deviation}
   \end{center}
 \end{frame}
 % Here we must emphasize that both methods indicate that the vectors become
@@ -407,6 +407,38 @@ process}
 % Go over the results of the table making comparisons and interpreting the
 % results. As the advantage of the NCP method we should mention that it is a 
 % simpler concept to understand.
+
+\begin{frame}{Spectral coefficients with higher precision}
+  \begin{center}
+    \includegraphics[width=0.55\linewidth]{figures_shawvpa/run1/spec_sk}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}{Comparing the methods to find $k_{noise}$ with higher precision}
+  \begin{center}
+    \begin{tabular}{l||c|c|c|c}
+      \multicolumn{1}{l||}{problem} & \multicolumn{4}{l}{\texttt{shaw(400)}} \\
+      \hline \hline 
+      $\delta_{noise}$ & $10^{-14}$ & $10^{-8}$ & $10^{-4}$ & $10^{-2}$ \\
+      \hline
+      $k_{noise}$ (GKIB) & $17$ & $12$ & $7$ & $4$ \\
+      \hline
+      $k_{noise}$ (NCP) & $26$ & $26$ & $26$ & $26$ \\
+      \hline
+      $\tilde{\delta}_{noise}$ (GKIB) & $1.2E-14$ & $5.7E-9$ & $5.5E-3$ &
+      $1.6E-2$ \\
+      \hline
+      $\tilde{\delta}_{noise}$ (NCP) & $2.0E-15$ & $1.1E-9$ & $1.5E-6$ & 
+      $3.7E-4$ \\
+    \end{tabular}
+  \end{center}
+  \begin{itemize}
+    \item $\tilde{\delta}_{noise}$ indicates the estimated noise level.
+    \end{itemize}
+\end{frame}
+
+
 
 \section{Resolution matrix}
 \subsection{Expresion for $R^{\sharp}$}
