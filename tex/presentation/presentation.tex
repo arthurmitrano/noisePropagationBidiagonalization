@@ -420,6 +420,47 @@ process}
 % definition do not give the exact and noise true data, however it is a good
 % approximation for the euclidean norm of those.
 
+\begin{frame}{$s_{k}$ plots}
+  \begin{center}
+    %\includegraphics[width=0.35\linewidth]{img/sk_plots}
+  \end{center}
+\end{frame}
+
+\begin{frame}{$s_{k}^{exact}$ plots}
+  \begin{center}
+    %\includegraphics[width=0.35\linewidth]{img/exact_parts}
+  \end{center}
+\end{frame}
+
+\begin{frame}{$s_{k}^{noise}$ plots}
+  \begin{center}
+    %\includegraphics[width=0.35\linewidth]{img/noise_parts}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Other ways to find $k_{noise}$}
+  \begin{itemize}
+    \item Is possible to use other basis, like Fourier basis. This allows FFT.
+      \begin{center}
+        %\includegraphics[width=0.35\linewidth]{img/fft_sk}
+      \end{center}
+  \end{itemize}
+\end{frame}
+
+\subsection{More theory}
+\begin{frame}{$k_{noise}$ and $\delta_{noise}$}
+  \begin{itemize}
+    \item It is possible to find $k_{noise}$ \emph{without} using spectral
+      decomposition.
+    \item To find find the noise level we used
+      \begin{equation*}
+	\delta_{noise} \approx \frac{1}{2}\rho_{k_{noise}}.
+      \end{equation*}
+    \item We refer \cite{bidiagonalization} for more details.
+  \end{itemize}
+\end{frame}
+
+
 \subsection{Normalized Cumulative Periodogram}
 \begin{frame}{Normalized Cumulative Periodogram (NCP)}
   \begin{itemize}
