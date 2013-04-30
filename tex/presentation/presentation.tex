@@ -257,7 +257,7 @@ process}
 % we also mention how we going to approach the problem, i.e., using NCP and the
 % method of the main reference.
 
-\section{Noise propagation}
+\section{Noise propagation 1}
 \subsection{Picard condition}
 \begin{frame}
   \begin{itemize}
@@ -306,6 +306,8 @@ process}
 % We include the plot of the singular vectors to show that their frequency get
 % higher for smaller singular values ($k$ increasing).
 
+\section{Noise Propagation 2}
+\subsection{Spectral Coefficients}
 \begin{frame}{Analizing the spectral coefficients}
   \begin{itemize}
     \item Using the SVD of $A$ and the Lanczos tridiagonalization of $AA^{T}$:
@@ -362,7 +364,7 @@ process}
 
 \begin{frame}
   \begin{center}
-    %\includegraphics[width=0.35\linewidth]{img/alpha_beta_est}
+    \includegraphics[width=0.55\linewidth]{figures/run1/alpha_beta_est}
   \end{center}
   \begin{itemize}
     \item $\phi_{k}$ acts like a filter on low frequencies and the constant term
@@ -374,9 +376,11 @@ process}
 % summarize how the noise is being spread, i.e., being filter out on the lower
 % frequencies and amplified on the higher ones.
 
+\section{Noise Propagation 3}
+\subsection{Behavior of $s_{k}^{exact}$ and $s_{k}^{noise}$}
 \begin{frame}{Signal and noise spaces}
   \begin{center}
-    %\includegraphics[width=0.35\linewidth]{img/signal_noise_space}
+    \includegraphics[width=0.55\linewidth]{figures/run1/signal_noise_space}
   \end{center}
   \begin{itemize}
     \item $span\left\{u_{1},\ldots,u_{k+1}\right\}$ is the signal subspace.
@@ -388,7 +392,7 @@ process}
 % then there is an iteration where one of them move clockwise (approaching the
 % signal subspace), indicating that $k_{noise} + 2 = 19$, i.e., $k_{noise} = 17$
 
-\subsection{Behavior of $s_{k}^{exact}$ and $s_{k}^{noise}$}
+
 \begin{frame}{Behavior of $s_{k}^{exact}$ and $s_{k}^{noise}$}
   \begin{itemize}
     \item To further illustrate the noise amplification we look to
