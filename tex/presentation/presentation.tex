@@ -327,7 +327,8 @@ process}
       \end{equation*}
     
     \item $\alpha_{1}/\beta_{2}$ is likely to be larger than $1$.
-    %\item As $k$ increases the noise in in $s_{k}$ increases.
+    \item The noise level on the high frequencies will get larger on $s_{2}$
+      than $s_{1}$.
   \end{itemize}
 \end{frame}
 % Here we should recall the Lanczos tridiagonalization and show how the noise
@@ -336,12 +337,85 @@ process}
 
 \begin{frame}{Generalizing}
   \begin{itemize}
-    \item
+    \item For the general case we can write:
+      \begin{equation*}
+	U^{T}s_{k+1} = \phi_{k}(\Sigma^{2})U^{T}s_{1}
+      \end{equation*}
+
+    \item $\phi_{k}(\lambda)$ is the Lanczos polynomial with root 
+      $(\theta_{l}^{(k)})^{2}$, $l = 1,\ldots,k$ (Ritz values).
+
+    \item The large Ritz values $(\theta_{k}^{(k)})^{2}$, 
+      $(\theta_{k}^{(k)})^{2}$, \ldots closely approximate the singular values
+      $\sigma_{1}^{2}$, $\sigma_{2}^{2}$, \ldots.
+
+    \item Note that the constant term
+      \begin{equation*}
+	\phi_{k}(0) = \prod_{j=1}^{k}\frac{\alpha_{j}}{\beta_{j+1}} = 
+	\rho_{k}^{-1}
+      \end{equation*}
   \end{itemize}
 \end{frame}
 % Here we should explain without many details how what happens from $s_{1}$ to
 % $s_{2}$ also happens in general from $s_{1}$ to $s_{k}$ using the Lanczos
 % polynomial $\phi_{k}$.
+
+\begin{frame}
+  \begin{center}
+    %\includegraphics[width=0.35\linewidth]{img/alpha_beta_est}
+  \end{center}
+  \begin{itemize}
+    \item $\phi_{k}$ acts like a filter on low frequencies and the constant term
+      $\phi_{k}(0) = \rho_{k}^{-1}$ causes the amplification of the high
+      frequency noise present in the noisy vector $s_{1}$.
+  \end{itemize}
+\end{frame}
+% The idea here is to show in the graph that $\rho_{k}$ is increasing and
+% summarize how the noise is being spread, i.e., being filter out on the lower
+% frequencies and amplified on the higher ones.
+
+\begin{frame}{Signal and noise spaces}
+  \begin{center}
+    %\includegraphics[width=0.35\linewidth]{img/signal_noise_space}
+  \end{center}
+  \begin{itemize}
+    \item $span\left\{u_{1},\ldots,u_{k+1}\right\}$ is the signal subspace.
+    \item $span\left\{u_{k+2},\ldots,u_{n}\right\}$ is the noise subspace.
+  \end{itemize}
+\end{frame}
+% Explain the plot and give a reasoning why it it reveals the noise. Note that
+% the vectors are moving counterclockwise (approaching the noise subspace) and
+% then there is an iteration where one of them move clockwise (approaching the
+% signal subspace), indicating that $k_{noise} + 2 = 19$, i.e., $k_{noise} = 17$
+
+\subsection{Behavior of $s_{k}^{exact}$ and $s_{k}^{noise}$}
+\begin{frame}{Behavior of $s_{k}^{exact}$ and $s_{k}^{noise}$}
+  \begin{itemize}
+    \item To further illustrate the noise amplification we look to
+      $s_{k}^{exact}$ and $s_{k}^{noise}$. Let $s_{1} = s_{1}^{exact} + 
+      s_{1}^{noise}$ and
+      \begin{align*}
+	\beta_{k+1}s_{k+1}^{exact} &= Aw_{k} - \alpha_{k}s_{k}^{exact}, \\
+	\beta_{k+1}s_{k+1}^{noise} &= -\alpha_{k}s_{k}^{noise}, \\
+	s_{k+1} &= s_{k+1}^{exact} + s_{k+1}^{exact}, \quad 
+	\beta_{k+1}s_{k+1} = Aw_{k} - \alpha_{k}s_{k}.
+      \end{align*}
+      
+    \item They aren't the true exact and noise data, but they give good
+      approximations to the euclidean norm. See \cite{bidiagonalization}.
+
+    \item Note that,
+      \begin{equation*}
+	s_{k+1}^{noise} = -\frac{\alpha_{k}}{\beta_{k+1}}s_{k}^{noise} =
+	(-1)^{k}\rho_{k}^{-1}s_{1}^{noise}.
+      \end{equation*}
+  \end{itemize}
+\end{frame}
+% Here we going to just say we are using the definition of \cite{bidiagonal} and
+% present the plots on the next slides. Make sure to mention that this
+% definition do not give the exact and noise true data, however it is a good
+% approximation for the euclidean norm of those.
+
 \subsection{Normalized Cumulative Periodogram}
 \begin{frame}{Normalized Cumulative Periodogram (NCP)}
   \begin{itemize}
@@ -352,7 +426,7 @@ process}
 	\quad j = 1,\ldots,q.
       \end{equation*}
 
-    \item Kolmogorov-Smirnonoff at $5\%$ significance level: the NCP curve must
+    \item Kolmogorov-Smirnoff at $5\%$ significance level: the NCP curve must
       lie between the limits $\pm 1.35q^{-1/2}$ of the straight line (diagonal).
 
     \item There are other kind of measures for testing if a distribution is
@@ -418,5 +492,12 @@ process}
 \end{frame}
 % Explain what is a resolution matrix and why it is important during the
 % presentation using Matlab.
+
+\begin{thebibliography}{1}
+  \bibitem{bidiagonalization}  Hnetynkova, I. and Plesinger, M.. 
+    \emph{The regularizing effect of the Golub-Kahan iterative bidiagonalization 
+      and revealing the noise level in the data.}
+      BIT Numer Math (2009) 49: 669-696.
+\end{thebibliography}
 
 \end{document}
