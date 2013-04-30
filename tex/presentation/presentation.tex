@@ -182,6 +182,32 @@ process}
 % which can be used for computing the singular valued decomposition on a stable
 % way. Note that product of orthogonal matrices is a orthogonal matrix.
 
+\begin{frame}{Lanczos tridiagonalization of $AA^{T}$}
+  \begin{itemize}
+    \item Using the starting vector $s_{1} = b/\beta_{1}$, $\beta_{1} = \|b\|$,
+      yields in $k$ steps:
+      \begin{equation*}
+	AA^{T}S_{k} = S_{k}T_{k} + \alpha_{k}\beta_{k+1}s_{k+1}e_{k}^{T},
+      \end{equation*}
+      and
+      \begin{equation*}
+	T_{k} = L_{k}L_{k}^{T} = 
+	\begin{bmatrix}
+	  \alpha_{1}^{2} & \alpha_{1}\beta_{2} & & \\
+	  \alpha_{1}\beta_{2} & \alpha_{2}^{2} + \beta_{2}^{2} & \ddots & \\
+	  & \ddots & \ddots & \alpha_{k-1}\beta_{k} \\
+	  & & \alpha_{k-1}\beta_{k} & \alpha_{k}^{2} + \beta_{k}^{2}
+	\end{bmatrix}
+      \end{equation*}
+      
+    \item The matrix $L_{k}$ from the GKIB is a Cholesky factor of the matrix
+      $T_{k}$.
+  \end{itemize}
+\end{frame}
+% We just want to mention the connection of Lanczos tridiagonalization with
+% GKIB. This will be used later to understand how the noise propagates on the
+% $s_{k}$.
+
 \begin{frame}{The core problem}
   \begin{itemize}
     \item Consider $x_{k} = W_{k}y_{k}$ as an approximation for the solution of
@@ -261,6 +287,61 @@ process}
 % is drastically violated. Also mention that if we use high precision arithmetic
 % the singular values decay faster then the projections $<b,u_{j}>$.
 
+\subsection{Finding $k_{noise}$}
+\begin{frame}{Spectral coefficients}
+  \begin{center}
+    %\includegraphics[width=0.35\linewidth]{img/spec_sk}
+  \end{center}
+\end{frame}
+% Here we want to show that as the we increase $k$ the spectral coefficients
+% associated with the lower frequencies singular vectors decay and the ones
+% associated with the high frequencies rise and are comparable (this reveals
+% the noise).
+
+\begin{frame}{Left singular vectors}
+  \begin{center}
+    %\includegraphics[width=0.35\linewidth]{img/sing_vecs}
+  \end{center}
+\end{frame}
+% We include the plot of the singular vectors to show that their frequency get
+% higher for smaller singular values ($k$ increasing).
+
+\begin{frame}{Analizing the spectral coefficients}
+  \begin{itemize}
+    \item Using the SVD of $A$ and the Lanczos tridiagonalization of $AA^{T}$:
+      \begin{equation*}
+	\Sigma^{2}(U^{T}S_{k}) = (U^{T}S_{k})(L_{k}L_{k}^{T}) + 
+	\alpha_{k}\beta_{k+1}(U^{T}s_{k+1})e_{k}^{T}.
+      \end{equation*}
+
+    \item Setting $k=1$ we can see how the noise spreads to $s_{2}$ (looking to
+      the last column):
+      \begin{equation*}
+	\alpha_{1}\beta_{2}(U^{T}s_{2}) = (\Sigma^{2} - 
+	\alpha_{1}^{2}I)U^{T}s_{1}
+      \end{equation*}
+    
+    \item The matrix acts like a filter on the lower frequencies
+      \begin{equation*}
+	\frac{\sigma_{i}}{\alpha_{1}\beta_{2}} - \frac{\alpha_{1}}{\beta_{2}}
+      \end{equation*}
+    
+    \item $\alpha_{1}/\beta_{2}$ is likely to be larger than $1$.
+    %\item As $k$ increases the noise in in $s_{k}$ increases.
+  \end{itemize}
+\end{frame}
+% Here we should recall the Lanczos tridiagonalization and show how the noise
+% spreads to $s_{2}$, i.e., the lower frequencies get smooth (filtered out) and
+% the high frequencies get amplified.
+
+\begin{frame}{Generalizing}
+  \begin{itemize}
+    \item
+  \end{itemize}
+\end{frame}
+% Here we should explain without many details how what happens from $s_{1}$ to
+% $s_{2}$ also happens in general from $s_{1}$ to $s_{k}$ using the Lanczos
+% polynomial $\phi_{k}$.
 \subsection{Normalized Cumulative Periodogram}
 \begin{frame}{Normalized Cumulative Periodogram (NCP)}
   \begin{itemize}
@@ -331,9 +412,7 @@ process}
 \subsection{Expresion for $R^{\sharp}$}
 \begin{frame}{Resolution matrix of the GKIB process}
   \begin{itemize}
-    \item $R^{\sharp} = V_{k}(L_{k}^{T}L_{k})^{-1}L_{k}^{T}U_{k}^{T}A$.
-    \item Where $U_{k} = \ldots$ and $V_{k} = \ldots$. Need to write in terms of
-      $S_{k}$ and $W_{k}$.
+    \item $R^{\sharp} = W_{k}(L_{k}^{T}L_{k})^{-1}L_{k}^{T}S_{k}^{T}A$.
     \item Show the resolution matrix in Matlab.
     \end{itemize}
 \end{frame}
