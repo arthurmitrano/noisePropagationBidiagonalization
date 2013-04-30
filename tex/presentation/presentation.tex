@@ -562,10 +562,28 @@ process}
 \section{Resolution matrix}
 \subsection{Expresion for $R^{\sharp}$}
 \begin{frame}{Resolution matrix of the GKIB process}
-  \begin{itemize}
-    \item $R^{\sharp} = W_{k}(L_{k}^{T}L_{k})^{-1}L_{k}^{T}S_{k}^{T}A$.
-    \item Show the resolution matrix in Matlab.
-    \end{itemize}
+  Given $A\hat{x} = \hat{b}$,\\
+  Let $A^{\sharp}$ be an approximation for $A^{-1}$, then
+  \begin{equation*}
+    x^{\sharp} = A^{\sharp}\hat{b} = A^{\sharp}A\hat{x} = R^{\sharp}\hat{x}
+    \quad R^{\sharp} = A^{\sharp}A.
+  \end{equation*}
+  For the LSQR algorithm we have
+  \begin{align*}
+    x_{k} &= W_{k}y_{k}, \quad \text{where} \quad L_{k}y_{k} \approx 
+    \beta_{1}e_{1} = \beta_{1}S_{k}^{T}s_{1} = S_{k}^{T}b \\
+    x_{k} &= W_{k}(L_{k}^{T}L_{k})^{-1}L_{k}^{T}S_{k}^{T}b = A^{\sharp}_{k},
+  \end{align*}
+  thus
+  \begin{equation*}
+    R_{k}^{\sharp} = A_{k}^{\sharp}A = 
+    W_{k}(L_{k}^{T}L_{k})^{-1}L_{k}^{T}S_{k}^{T}A
+  \end{equation*}
+  
+  %\begin{itemize}
+    %\item $R^{\sharp} = W_{k}(L_{k}^{T}L_{k})^{-1}L_{k}^{T}S_{k}^{T}A$.
+    %\item Show the resolution matrix in Matlab.
+  %\end{itemize}
 \end{frame}
 % Explain what is a resolution matrix and why it is important during the
 % presentation using Matlab.
