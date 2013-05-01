@@ -1,0 +1,30 @@
+\documentclass[11pt]{amsart}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\title{Final Report}
+\author{Juan Durazo \\ Arthur Mitrano \\ Brendan Horan}
+%\date{}                                           % Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\section{ introduction}
+\subsection{Problem} \indent \\
+The problem we are seeking to solve is 
+$$Ax=b, \indent A  \in  \mathbb{R}, \indent b = b^{exact} + b^{noise}$$ \\
+In the above equation, $b^{noise}$ is a white noise vector with unknown level $\delta_{noise}$.
+We investigate how noise enters the problem through $b$ and how it propagates into the 
+core problem. Using this information, we can develop a stopping criteria for hybrid methods 
+that are based on the Golub-Kahan bidiagonalization(GKb) process. Additionally, we 
+can estimate the original noise level that was introduced into the problem with $b$.
+
+\section{Finding $\bf k_{noise}$ using Normalized Cumulative Periododogram}
+The Normalized Cumulative Periodogram(NCP) can be used to determine how "white-noise like" 
+each $s_k$ is.
+
+
+\end{document}  
