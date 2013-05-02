@@ -159,7 +159,7 @@ until they are comparable. This behavior is consider to reveal the noise.
   \end{center}
 \caption{Plot of the first 80 spectral coefficients on the direction of the left
 singular vectors of $A$. As $k$ increases the lower frequencies get filtered out
-and the high frequencies become comparable.}
+and the high frequencies become comparable. $\delta_{\text{noise}} = 10^{-14}$}
 \end{figure}
 
 To better see what is happening we can use the singular value decomposition of
@@ -220,14 +220,38 @@ the high frequency noise components gradually increasing. At some point
 $k = k_{\text{noise}}$, the vector $s_{k_{\text{noise}} + 1}$ will have
 comparable components on all the subspaces associated with the singular values
 $\sigma_{k_{noise} + 1}, \sigma_{k_{noise} + 1}, \ldots$, and this will 
-\emph{reveal} the noise.
-
+\emph{reveal} the noise. We can see this behavior on figure 
+\ref{fig:spectralCoeffs}, which indicates that $k_{\text{noise}} = 17$. In
+figure \ref{fig:snSpace} we display an automate criteria to reveal the value of
+$k_{\text{noise}}$. We observe that as $k$ increases the $s_{k+1}$ gets closer
+to the noise subspace (rotates counterclockwise), but the vector $s_{19}$ moves
+clockwise, approaching the signal space. This indicates that the noise is
+revealed in $s_{18}$, which justifies the reveling noise iteration to be 
+$k_{\text{noise}} = 17$.
 \begin{figure}[htb] \label{fig:snSpace}
   \begin{center}
     \includegraphics[width=0.55\linewidth]{figures/run1/signal_noise_space}
   \end{center}
-\caption{}
+\caption{The $span\left\{u_{1},\ldots,u_{k+1}\right\}$ is the signal subspace 
+(\emph{horizontal axis}) and $span\left\{u_{k+2},\ldots,u_{n}\right\}$ is the
+noise subspace (\emph{vertical axis}). The abscissa and ordinate of the vector 
+$s_{k}$ are given by its projection on the signal and noise subspaces, 
+respectively. ($\triangle$): $s_{k}$ and ($\circ$): $s_{k+1}$.}
 \end{figure}
+
+\section{Behavior of $s_{k}^{\text{exact}}$ and $s_{k}^{\text{noise}}$}
+To further illustrate the noise amplification we look to $s_{k}^{exact}$ and 
+$s_{k}^{noise}$. Let $s_{1} = s_{1}^{exact} + s_{1}^{noise}$ and define the
+$s_{k}^{exact}$ and $s_{k}^{noise}$ by
+\begin{align*}
+  \beta_{k+1}s_{k+1}^{exact} &= Aw_{k} - \alpha_{k}s_{k}^{exact}, \\
+  \beta_{k+1}s_{k+1}^{noise} &= -\alpha_{k}s_{k}^{noise}, \\
+  s_{k+1} &= s_{k+1}^{exact} + s_{k+1}^{exact}, \quad 
+  \beta_{k+1}s_{k+1} = Aw_{k} - \alpha_{k}s_{k}.
+\end{align*}
+Those vector aren't the true exact and noise data, but they give good 
+approximations to their euclidean norm. For more details see 
+\cite{bidiagonalization}.
 
 \section{Cumulative periodogram}
 The normalized cumulative periodogram (NCP) can be used to determine how 
@@ -337,12 +361,12 @@ level.
 	noise then goes on to increase as $k$ increases. This observation can also be seen on the
 	plots of $s_{k}^{no}$(right column).
 	
-We can automate the approximation of using the signal-noise space like in figure \ref{fig: snSpace}.
+We can automate the approximation of using the signal-noise space like in figure \ref{fig:snSpace}.
 We can compute the iteration for when moving from the circle to the triangle is not a clockwise
 rotation. This amounts to calculating the iteration where the horizontal coordinate of the circle is greater
 than the horizontal coordinate of the triangle. It should be noted that sometimes coordinate of the 
 circle is greater than the horizontal coordinate of the triangle, but only by about a small  amount of 
-order $10^{-4}$ as in the 3rd plot in \ref{fig: snSpace}.
+order $10^{-4}$ as in the 3rd plot in \ref{fig:snSpace}.
 However this happens way before the noise revealing iterations found above visually . We therefore
 ensure that coordinate of the circle is greater than the horizontal coordinate of the triangle by at least 0.1. 
 Under this convention, we can find $k_{noise}$ values that are found visually above.
