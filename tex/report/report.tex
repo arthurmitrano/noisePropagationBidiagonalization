@@ -184,10 +184,56 @@ singular values $\sigma_{k}$ are negligible, which makes the spectral
 coefficients associated amplified ($\alpha_{1}/\beta_{2}$) see section 3.1 of 
 \cite{bidiagonalization} and figure \ref{fig:rhok}.
 
+For the general case, we can rewrite equation \eqref{eq:spectralCoeffs} as
+\begin{equation*}
+  U^{T}s_{k+1} = \phi_{k}(\Sigma^{2})U^{T}s_{1}
+\end{equation*}
+where $\varphi_{k}(\lambda)$ is the Lanczos polynomial with roots 
+$(\theta_{k}^{(k)})^{2}$, $l = 1,\ldots,k$, which are called \emph{Ritz values}.
+The first singular values squared of $A$, $\sigma_{1}^{2}$, $\sigma_{2}^{2}$, 
+\ldots closely approximates the large Ritz values 
+$\left(\theta_{k}^{(k)}\right)^{2}$, $\left(\theta_{k-1}^{(k)}\right)^{2}$, 
+\ldots. Moreover, the constant term
+\begin{equation*}
+  \phi_{k}(0) = \prod_{j=1}^{k}\frac{\alpha_{j}}{\beta_{j+1}} = \rho_{k}^{-1}.
+\end{equation*}
+In \cite{bidiagonalization}, one can find further details and references on how 
+to deduce and confirm numerically those statements. 
 
-\section{Cumulative Periododogram}
-The Cumulative Periodogram(NCP) can be used to determine how "white-noise like" 
-each $s_k$ is. Given a sequence of $s_k$ we can compute the vectors
+Since the first singular values are close to the roots of
+$\varphi_{k}(\lambda)$, the coefficients associated with low frequencies will be
+filtered out. However, due to $rho_{k}$ getting small as $k$ increases (figure
+\ref{fig:rhok}) and the singular values converging to zero, we have an
+relative amplification of the high frequency noise components present on 
+$s_{1}$.
+\begin{figure}[htb] \label{fig:rhok}
+  \begin{center}
+    \includegraphics[width=0.55\linewidth]{figures/run1/alpha_beta_est}
+  \end{center}
+\caption{The left plot uses double reorthogonalization and the right one does
+not. The reader can find information of noise propagation when orthogonality of
+the bidiagonal vectors is lost in \cite{bidiagonalization} section 5.}
+\end{figure}
+
+Synthesizing, $s_{2},s_{3},\ldots$ will have dominant components in the
+direction of the left singular vectors $u_{2},u_{3},\ldots$, respectively, with
+the high frequency noise components gradually increasing. At some point
+$k = k_{\text{noise}}$, the vector $s_{k_{\text{noise}} + 1}$ will have
+comparable components on all the subspaces associated with the singular values
+$\sigma_{k_{noise} + 1}, \sigma_{k_{noise} + 1}, \ldots$, and this will 
+\emph{reveal} the noise.
+
+\begin{figure}[htb] \label{fig:snSpace}
+  \begin{center}
+    \includegraphics[width=0.55\linewidth]{figures/run1/signal_noise_space}
+  \end{center}
+\caption{}
+\end{figure}
+
+\section{Cumulative periodogram}
+The normalized cumulative periodogram (NCP) can be used to determine how 
+``white-noise like'' each $s_k$ is. Given a sequence of $s_k$ we can compute the
+vectors
 $$c_k = |dft(s_k)|^2, \indent z_k = \frac{\sum_{i=1}^k c_i}{ \sum_{i=1}^q c_i}, \indent j=1,\cdots, q$$ 
 The test is to see if any of the $z_k$ vectors are to a straight increasing diagonal line. There are two 
 way to measure how close the $z_k$ vectors are to this diagonal line. We can measure the 
