@@ -121,42 +121,41 @@ Matlab \texttt{rand(400,1)}, which is scaled such that
 \begin{equation*}
   \delta_{\text{noise}} = \frac{\|b^{\text{noise}}\|}{\|b^{\text{exact}}\|}.
 \end{equation*}
-We used $\delta_{\text{noise}} = 10^{-14}, 10^{-8}, 10^{-4}$ as noise level.
+We used $\delta_{\text{noise}} = 10^{-14}, 10^{-8}, 10^{-4}, 10^{-2}$ as noise level.
 The shaw problem satisfy the \emph{discrete Picard condition} on average 
 (without added noise). On figure \ref{fig:picard} we see that the Picard 
 condition is drastically violated due to the complete dominance of the noise in
 the projections of $b$ onto the left singular vectors $u_{j}$ of $A$.
+
 \begin{figure}[htb] \label{fig:picard}
   \begin{center}
-    %\includegraphics[width=.55\linewidth]{figures/picard}
+    \includegraphics[width=.55\linewidth]{../presentation/figures/picard}
   \end{center}
 \caption{Singular values $\sigma_{j}$ and the absolute value of the
 projections of the noisy right-hand side $b$ on the left singular vectors 
 $u_{j}$ of $A$. $\delta_{\text{noise}} = 10^{-14}, 10^{-8}, 10^{-4}$.}
 \end{figure}
-If one can check that the discrete Picard condition holds for the shaw problem
-using high precision arithmetic.
-% We could include the vpa plot for completeness.
 
 \section{Analyzing the spectral coefficients of $s_{k}$}
 Now we focus our attention on studying and interpreting the spectral 
-coefficients of the vectors $s_{k}$'s. This will give the information on how the
+coefficients of the vectors $s_{k}$. This will give the information on how the
 noise spreads on the problem solution.
 
-The singular vectors $u_{k}$'s increase in frequency as $k$ increase, see figure
-\ref{fig:singularVectors}. In figure \ref{fig:spectralCoeffs} we see that as $k$
-is increased the spectral coefficients associated with the lower frequencies 
+The singular vectors $u_{k}$ increase in frequency as $k$ increases, as 
+see in figure \ref{fig:singularVectors}.
+In figure \ref{fig:spectralCoeffs} we see that as $k$
+is increased the spectral coefficients associated with the lower frequency 
 singular vectors decay and the ones associated with the high frequencies rise 
 until they are comparable. This behavior is consider to reveal the noise.
-\begin{figure}[htb] \label{fig:singularVectors}
+\begin{figure}[b] \label{fig:singularVectors}
   \begin{center}
-    %\includegraphics[width=0.55\linewidth]{figures/run1/sing_vecs}
+    \includegraphics[width=0.55\linewidth]{figures/run1/sing_vecs}
   \end{center}
 \caption{Note that the frequency of the singular vector increase with $k$.}
 \end{figure}
 \begin{figure}[htb] \label{fig:spectralCoeffs}
   \begin{center}
-    %\includegraphics[width=0.55\linewidth]{figures/run1/spec_sk}
+    \includegraphics[width=0.55\linewidth]{figures/run1/spec_sk}
   \end{center}
 \caption{Plot of the first 80 spectral coefficients on the direction of the left
 singular vectors of $A$. As $k$ increases the lower frequencies get filtered out
@@ -190,18 +189,18 @@ The Cumulative Periodogram(NCP) can be used to determine how "white-noise like"
 each $s_k$ is. Given a sequence of $s_k$ we can compute the vectors
 $$c_k = |dft(s_k)|^2, \indent z_k = \frac{\sum_{i=1}^k c_i}{ \sum_{i=1}^q c_i}, \indent j=1,\cdots, q$$ 
 The test is to see if any of the $z_k$ vectors are to a straight increasing diagonal line. There are two 
-way to measure how close the $z_k$ vectors are to this diagonal line. We can measure the 
+ways to measure how close the $z_k$ vectors are to this diagonal line. We can measure the 
 absolute value of the deviation of each vector from the "white noise" diagonal line or we can keep
 count of the number of indices that lie outside the Kolmogorov-Smirnov test at a certain confidence 
-level. We will consider several values for this confidence level in the results section.
+level. 
 
 \section{Results}
 
-\subsection{Finding $\bf k_{noise}$ using GKB}
+\subsection{Finding $\bf k_{noise}$ using GKIB} \indent \\
 	Recall that we can find the iteration $k_{noise}$ in which the noise is revealed automatically
 	using the noise-signal space computations and also by looking at plots of the $s_k$ vectors.
-	For the purposes of discussion and demonstration, we will use the latter approach to present
-	the results here.
+	First, we will use the latter approach to present to see for what iteration, the noise {\it begins}
+    to become visible.
 
 	We first consider the case when $\delta_{noise}=10^{-14}$ and then consider the cases
 	where $\delta_{noise} = 10^{-8},10^{-4},10^{-2}$:
@@ -221,7 +220,7 @@ level. We will consider several values for this confidence level in the results 
 	\end{minipage}
 	\begin{center}
 		FIGURE: 
-		The noise becomes visible at $s_17$, so $k_{noise} = 17$.
+		The noise becomes visible at $s_{17}$, so $k_{noise} = 17$.
 	\end{center} 
 	\vspace{5mm}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -242,7 +241,7 @@ level. We will consider several values for this confidence level in the results 
 	\end{minipage}
 	\begin{center}
 		FIGURE: 
-		Noise starts to become visible at the $s_{11}$ plot so $k_{noise}=11$
+		Noise starts to become visible at $s_{11}$ for $\delta_{noise}=11$
 	\end{center} 
 	\vspace{5mm}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -261,7 +260,7 @@ level. We will consider several values for this confidence level in the results 
 	\end{minipage}
 	\begin{center}
 		FIGURE: 
-		Noise starts to become visible at the $s_{7}$ plot so $k_{noise}=7$
+		Noise starts to become visible at the $s_{7}$ plot for $\delta_{noise}=7$
 	\end{center} 
 	\vspace{10mm}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -280,22 +279,47 @@ level. We will consider several values for this confidence level in the results 
 	\end{minipage}
 	\begin{center}
 		FIGURE: 
-		Noise starts to become visible at the $s_{4}$ plot so $k_{noise}=4$	\end{center} 
+		Noise starts to become visible at the $s_{4}$ plot for $\delta_{noise}=4$	\end{center} 
 	\vspace{10mm}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	
 	As we can see in the above plots, for larger values of $\delta_{noise}$, the
 	noise is revealed at earlier iterations. We also see that once the noise enters
-	the $s_k$ vectors for the first time, the plots of $s_k$(left) appear to have 
+	the $s_k$ vectors for the first time, the plots of $s_k$(left column) appear to have 
 	reduced amount of noise in the immediately following iteration but this 
-	noise never leaves the vectors. This observation can also be seen on the
-	plots of $s_{k}^{no}$(right).
+	noise then goes on to increase as $k$ increases. This observation can also be seen on the
+	plots of $s_{k}^{no}$(right column).
+	
+We can automate the approximation of using the signal-noise space like in figure \ref{fig: snSpace}.
+We can compute the iteration for when moving from the circle to the triangle is not a clockwise
+rotation. This amounts to calculating the iteration where the horizontal coordinate of the circle is greater
+than the horizontal coordinate of the triangle. It should be noted that sometimes coordinate of the 
+circle is greater than the horizontal coordinate of the triangle, but only by about a small  amount of 
+order $10^{-4}$ as in the 3rd plot in \ref{fig: snSpace}.
+However this happens way before the noise revealing iterations found above visually . We therefore
+ensure that coordinate of the circle is greater than the horizontal coordinate of the triangle by at least 0.1. 
+Under this convention, we can find $k_{noise}$ values that are found visually above.
+
+The step $k$ in which this happens corresponds to noise being projected out of the vector $s_k$,
+which means that the noise is revealed in $s_{k-1}$. Therefore the noise revealing iteration 
+is $s_{k-2}$. The table below contains the values of $k_{noise}$ that are found for the different 
+values of $\delta_{noise}$.
+
+\begin{center}
+    \begin{tabular}{l||c|c|c|c}
+      \multicolumn{1}{l||}{problem} & \multicolumn{4}{l}{\texttt{shaw(400)}} \\
+      \hline \hline 
+      $\delta_{noise}$ & $10^{-14}$ & $10^{-8}$ & $10^{-4}$ & $10^{-2}$ \\
+      \hline
+      $k_{noise}$ (GKIB) & $17$ & $11$ & $7$ & $4$ \\
+          \end{tabular}
+  \end{center}
 
 \subsection{Finding $\bf k_{noise}$ using NCP} \indent \\
 First we present the plot that we discussed during the presentation. This is the case where
 $\delta_{noise} = 10^{-14}$  and the $\delta_{KS}=1.35$. Here, $\delta_{KS}$ is half of the
-width of the Kolmogorov-Smirnov($KS$) test band.The corresponding cumulative periodogram is given below. 
+width of the Kolmogorov-Smirnov($KS$) test band. The corresponding cumulative periodogram is given below. 
 On the left is the periodogram of the vectors $s_k$. On the right is their total deviation from 
 the diagonal "white noise" diagonal line in blue and the percentage of indices lying outside of the KS test band.
 
@@ -319,21 +343,31 @@ the diagonal "white noise" diagonal line in blue and the percentage of indices l
 
 As discussed in the presentation and can be see on the total deviation plot above, NCP
 is determining that $k_{noise} = 27$. This value is in disagreement with the value determined
-using KGB value of 17. Looking again at the total deviation plot, we can see that at iteration 17,
-the total deviation is indeed a local minimum and then goes on to increase dramatically and then 
-decrease again as it approaches iteration number 27. This is sort of to be expected given the
-behavior of the $s_k$ vectors that was discussed above in which after the noise revealing
-iteration, there is a decrease in visible noise and then eventually the vectors become more noisy. 
-This is why if NCP does not consider this first local minimum to be $k_{noise}$, it won't
-reach $k_{noise}$ until after noise is temporarily reduced from $s_k$ and then then increases
-again.
+using KGIB value of 17. Looking again at the total deviation plot, we can see that at iteration 17,
+there is a significant dip in total deviation and then it goes on to increase dramatically and then 
+decrease again as it approaches iteration number 27. This is to be expected given the
+behavior of the $s_k$ vectors that was discussed above. We saw that at iteration $k={17}$, 
+there was an increase in visible noise. This corresponds to $S_{17}$ being closer to white noise
+and hence we get the dip in the total deviation as well as the number of indices outside the 
+KS band.  
+Also recall that immediately after iteration
+$k=17$, there was a drop in visible noise. This corresponds to these $s_k$ vectors being less
+white noise like and this is reflected in the increase in total deviation and number of indices outside 
+the KS band in the plot above. 
+Finally, recall that after this decrease in visible white noise, we start to see more and more white 
+noise in the $s_k$ vectors. This corresponds to the mostly decreasing total deviation
+part of the plot above. 
+
+Also from this plot, we can see that if NCP does not consider the first main dip to be white noise,
+it won't happen again until after the fall and rise of white noise of the vectors $s_k$.
 
 This suggests that our criteria of what we call white noise may be too strict. If we widen our KS band
 a bit we may be able to have NCP agree with KGB as to which iteration is the noise revealing iteration.
-If we increase the $delta_{KS}$ value. After some experimentation we found that in order to get 
-$k_{noise}$ from the first local minimum, the value of $\delta_{KS}$ must be at about 8.15.
+This corresponds to increasing the $\delta_{KS}$ value, where $\delta_{KS}$ is half of the width
+of the KS band. After some experimentation we found that in order to get 
+$k_{noise}$ from the first dip, the value of $\delta_{KS}$ must be at about 8.15.
 We are not sure if making such modifications are allowed to be made with this test however.
-Using $\delta_{KS}=8.15$ and $\delta_{noise}=10^{-14}$, we get the plots below:
+Using $\delta_{KS}=8.15$ and $\delta_{noise}=10^{-14}$, we get the plot below:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\vspace{5mm}
@@ -349,6 +383,17 @@ Using $\delta_{KS}=8.15$ and $\delta_{noise}=10^{-14}$, we get the plots below:
 	\end{minipage}
 {\centering $\delta_{noise}=10^{-14}$}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Note that we want to get the iteration $k$ where noise is begins to reveal and not 
+necessarily when the vector $s_k$ is dominated by white noise. Hence in determining
+$k_{noise}$ with NCP, we find first iteration that is dominated by white noise, or 
+in other words its corresponding $z_k$ vector is within the KS band, and we take 
+$k_{noise}$ to be the previous iteration. Presumably, this is where noise {\it begins}
+to reveal itself. With this convention and the convention used for KGIB above, we get 
+agreement as to what $k_{noise}$ is.
+
+Below we repeat the experiment for the other values of $\delta_{noise}$ and obtain
+similar results. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\vspace{5mm}
@@ -397,11 +442,7 @@ Using $\delta_{KS}=8.15$ and $\delta_{noise}=10^{-14}$, we get the plots below:
 		\vspace{5mm}
 		{\centering $\delta_{noise}=10^{-2}$}
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-As we can see from the plots above, with the new value of $\delta_{KS}$, NCP finds $k_{noise}$
-at the first dip as desired. One thing to note however is that in the code, the value of $k_noise$
-was always one greater than the value found using GKB. In order to have the next vector be in the
-KS band, we would need to make $\delta_{KS}$ much large.
+
 
 \begin{thebibliography}{1}
   \bibitem{bidiagonalization}  Hnetynkova, I. and Plesinger, M.. 
@@ -409,6 +450,7 @@ KS band, we would need to make $\delta_{KS}$ much large.
       and revealing the noise level in the data.}
       BIT Numer Math (2009) 49: 669-696.
     \bibitem{hansen} [17] Ivete
+   \bibitem{svdRef} [10] Arthur will fill it in
 \end{thebibliography}
 
 \end{document}  
