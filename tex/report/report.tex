@@ -22,15 +22,23 @@ The problem we are seeking to solve is
 \end{equation*}
 In the above equation, $b^{noise}$ is a white noise vector with unknown level 
 $\delta_{noise}$. We investigate how noise enters the problem through $b$ and 
-how it propagates into the core problem. Using this information, we can develop
-a stopping criteria for hybrid methods that are based on the Golub-Kahan 
-bidiagonalization(GKb) process. Additionally, we can estimate the original noise
-level that was introduced into the problem with $b$.
+how it propagates as we compute the solution. We want to know this information because
+we can use it to get to the core problem. However if  we stop iterating too soon, 
+we may not have enough information about the problem and if we stop it too late, 
+we may be adding too much noise into the projected problem. 
+Hence we need to use some kind of stopping criteria that can be used for 
+hybrid methods that are based on the Golub-Kahan Iterative
+Bidiagonalization(GKIB) process. We investigate two stopping criteria. 
+The first is investigating how noise is projected throughout the GKIB process
+and the other is using a Normalized Cumulative Periodogram to determine
+when we are adding noise to the projected problem.Additionally,  this information can 
+be used to estimate the level of noise that was introduced in the beginning of the problem
+through $b$. We will also look at the resolution matrix of the GKIB process.
 
 \section{Golub-Kahan iterative bidiagonalization}
 Given the initial vector $w_{0}$ and $s_{1} = b/\beta_{1}$, where 
 $\beta_{1} = \|b\| \neq 0$, the Golub-Kahan iterative bidiagonalization is
-discribed by
+described by
 \begin{align*}
   \alpha_{j}w_{j} &= A^{T}s_{j} - \beta_{j}w_{j-1}, &\quad \|w_{j}\|=1,\\
   \beta_{j+1}s_{j+1} &= Aw_{j} - \alpha_{j}s_{j}, &\quad \|s_{j+1}\|=1
@@ -127,13 +135,14 @@ The shaw problem satisfy the \emph{discrete Picard condition} on average
 condition is drastically violated due to the complete dominance of the noise in
 the projections of $b$ onto the left singular vectors $u_{j}$ of $A$.
 
-\begin{figure}[htb] \label{fig:picard}
+\begin{figure}[htb] 
   \begin{center}
     \includegraphics[width=.55\linewidth]{../presentation/figures/picard}
   \end{center}
 \caption{Singular values $\sigma_{j}$ and the absolute value of the
 projections of the noisy right-hand side $b$ on the left singular vectors 
 $u_{j}$ of $A$. $\delta_{\text{noise}} = 10^{-14}, 10^{-8}, 10^{-4}$.}
+\label{fig:picard}
 \end{figure}
 
 \section{Analyzing the spectral coefficients of $s_{k}$}
@@ -142,24 +151,26 @@ coefficients of the vectors $s_{k}$. This will give the information on how the
 noise spreads on the problem solution.
 
 The singular vectors $u_{k}$ increase in frequency as $k$ increases, as 
-see in figure \ref{fig:singularVectors}.
+in figure \ref{fig:singularVectors}.
 In figure \ref{fig:spectralCoeffs} we see that as $k$
 is increased the spectral coefficients associated with the lower frequency 
 singular vectors decay and the ones associated with the high frequencies rise 
 until they are comparable. This behavior is consider to reveal the noise.
-\begin{figure}[b] \label{fig:singularVectors}
+\begin{figure}[b] 
   \begin{center}
     \includegraphics[width=0.55\linewidth]{figures/run1/sing_vecs}
   \end{center}
 \caption{Note that the frequency of the singular vector increase with $k$.}
+\label{fig:singularVectors}
 \end{figure}
-\begin{figure}[htb] \label{fig:spectralCoeffs}
+\begin{figure}[htb]
   \begin{center}
     \includegraphics[width=0.55\linewidth]{figures/run1/spec_sk}
   \end{center}
 \caption{Plot of the first 80 spectral coefficients on the direction of the left
 singular vectors of $A$. As $k$ increases the lower frequencies get filtered out
 and the high frequencies become comparable.}
+ \label{fig:spectralCoeffs}
 \end{figure}
 
 To better see what is happening we can use the singular value decomposition of
@@ -205,13 +216,14 @@ filtered out. However, due to $rho_{k}$ getting small as $k$ increases (figure
 \ref{fig:rhok}) and the singular values converging to zero, we have an
 relative amplification of the high frequency noise components present on 
 $s_{1}$.
-\begin{figure}[htb] \label{fig:rhok}
+\begin{figure}[htb] 
   \begin{center}
     \includegraphics[width=0.55\linewidth]{figures/run1/alpha_beta_est}
   \end{center}
 \caption{The left plot uses double reorthogonalization and the right one does
 not. The reader can find information of noise propagation when orthogonality of
 the bidiagonal vectors is lost in \cite{bidiagonalization} section 5.}
+\label{fig:rhok}
 \end{figure}
 
 Synthesizing, $s_{2},s_{3},\ldots$ will have dominant components in the
@@ -222,11 +234,12 @@ comparable components on all the subspaces associated with the singular values
 $\sigma_{k_{noise} + 1}, \sigma_{k_{noise} + 1}, \ldots$, and this will 
 \emph{reveal} the noise.
 
-\begin{figure}[htb] \label{fig:snSpace}
+\begin{figure}[htb] 
   \begin{center}
     \includegraphics[width=0.55\linewidth]{figures/run1/signal_noise_space}
   \end{center}
 \caption{}
+\label{fig:snSpace}
 \end{figure}
 
 \section{Cumulative periodogram}
