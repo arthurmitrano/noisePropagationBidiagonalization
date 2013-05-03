@@ -253,7 +253,45 @@ Those vector aren't the true exact and noise data, but they give good
 approximations to their euclidean norm. For more details see 
 \cite{bidiagonalization}.
 
-\section{Cumulative periodogram}
+\begin{figure}[htb] 
+  \begin{center}
+    \includegraphics[width=0.55\linewidth]{figures/run1/sk_plots}
+  \end{center}
+\caption{}
+\label{fig:sk_plots}
+\end{figure}
+\begin{figure}[htb] 
+  \begin{center}
+    \includegraphics[width=0.55\linewidth]{figures/run1/exact_parts}
+  \end{center}
+\caption{}
+\label{fig:exact_parts}
+\end{figure}
+\begin{figure}[htb] 
+  \begin{center}
+    \includegraphics[width=0.55\linewidth]{figures/run1/noise_parts}
+  \end{center}
+\caption{}
+\label{fig:noise_parts}
+\end{figure}
+
+\section{Other ways to find $k_{\text{noise}}$}
+Although we did the spectral decomposition on the left singular vector matrix,
+it is possible to use a different basis for it and still be able to figure it
+out $k_{\text{noise}}$, see figure \ref{fig:fft}. This allows utilization of
+the \emph{fast Fourier transform (FFT)} algorithm ,which is more computationally
+efficient than singular value decomposition. Furthermore, in 
+\cite{bidiagonalization}, there is a way to calculate $k_{\text{noise}}$ without
+using spectral decomposition.
+\begin{figure}[htb] 
+  \begin{center}
+    \includegraphics[width=0.55\linewidth]{figures/run1/fft_sk}
+  \end{center}
+\caption{}
+\label{fig:fft}
+\end{figure}
+
+\section{Normalized cumulative periodogram}
 The normalized cumulative periodogram (NCP) can be used to determine how 
 ``white-noise like'' each $s_k$ is. Given a sequence of $s_k$ we can compute the
 vectors
@@ -519,8 +557,14 @@ similar results.
     \emph{The regularizing effect of the Golub-Kahan iterative bidiagonalization 
       and revealing the noise level in the data.}
       BIT Numer Math (2009) 49: 669-696.
-    \bibitem{hansen} [17] Ivete
-   \bibitem{svdRef} [10] Arthur will fill it in
+    \bibitem{hansen} Hansen, P. C.. 
+    \emph{Regularization tools-version 3.2 for 
+      MATLAB 6.0, a package for analysis and solution of discrete ill-posed 
+      problems.} 
+      http://www2.imm.dtu.dk/~pch/regutools/index.html
+   \bibitem{svdRef}  Golub, G. H. and Van Loan, C. F.. 
+     \emph{Matrix computations.} 
+     Vol. 3. JHUP, 2012.
 \end{thebibliography}
 
 \end{document}  
